@@ -1,5 +1,5 @@
 import {Page, expect, Locator} from '@playwright/test';
-
+import { UserData } from '../data/userFactory';
 export class RegisterPage {
     readonly newUserSignupTitle: Locator;
     readonly enterAccountInformationTitle: Locator;
@@ -21,6 +21,9 @@ export class RegisterPage {
     readonly zipcodeInput: Locator;
     readonly mobileNumberInput: Locator;
     readonly createAccountButton: Locator;
+    readonly createAccountSuccessMessage: Locator;
+    readonly continueButton: Locator;
+    readonly loggedInAsUserNameLink: Locator;
 
     constructor(private page: Page) {
 
@@ -45,26 +48,29 @@ export class RegisterPage {
         this.zipcodeInput = page.getByTestId('zipcode');
         this.mobileNumberInput = page.getByTestId('mobile_number');
         this.createAccountButton = page.getByRole('button', { name: 'Create Account' });
+        this.createAccountSuccessMessage = page.getByRole('heading', { name: 'Account Created!' });
+        this.continueButton = page.getByTestId('continue-button');
+        this.loggedInAsUserNameLink = page.locator('li', { hasText: ' Logged in as' });
     }
 
-    async fillRegistrationForm(firstName: string, lastName: string, password: string, dayOfBirth: string, monthOfBirth: string, yearOfBirth: string, company: string, address1: string, address2: string, country: string, state: string, city: string, zipcode: string, mobileNumber: string) {
+    async fillRegistrationForm(user: UserData) {
         await this.titleCheckbox.check();
-        await this.passwordInput.fill(password);
-        await this.dayOfBirthInput.selectOption(dayOfBirth);
-        await this.monthOfBirthInput.selectOption(monthOfBirth);
-        await this.yearOfBirthInput.selectOption(yearOfBirth);
+        await this.passwordInput.fill(user.password);
+        await this.dayOfBirthInput.selectOption(user.day);
+        await this.monthOfBirthInput.selectOption(user.month);
+        await this.yearOfBirthInput.selectOption(user.year);
         await this.newsletterCheckbox.check();
         await this.offersCheckbox.check();
-        await this.firstNameInput.fill(firstName);
-        await this.lastNameInput.fill(lastName);
-        await this.companyInput.fill(company);
-        await this.address1Input.fill(address1);
-        await this.address2Input.fill(address2);
-        await this.countrySelect.selectOption(country);
-        await this.stateInput.fill(state);
-        await this.cityInput.fill(city);
-        await this.zipcodeInput.fill(zipcode);
-        await this.mobileNumberInput.fill(mobileNumber);
+        await this.firstNameInput.fill(user.name);
+        await this.lastNameInput.fill(user.lastName);
+        await this.companyInput.fill(user.company);
+        await this.address1Input.fill(user.address1);
+        await this.address2Input.fill(user.address2);
+        await this.countrySelect.selectOption(user.country);
+        await this.stateInput.fill(user.state);
+        await this.cityInput.fill(user.city);
+        await this.zipcodeInput.fill(user.zipcode);
+        await this.mobileNumberInput.fill(user.phone);
     }
 
     async verifyNewUserSignupVisible() {
@@ -75,5 +81,20 @@ export class RegisterPage {
         await expect(this.enterAccountInformationTitle).toBeVisible();
     }
 
+    async clickCreateAccountButton() {
+        await this.createAccountButton.click();
+    }
+
+    async verifyCreateAccountSuccess() {
+        await expect(this.createAccountSuccessMessage).toBeVisible();
+    }
+
+    async clickContinueButton() {
+        await this.continueButton.click();
+    }
+
+    async verifyLoggedInAsUserName(userName: string) {
+        await expect(this.loggedInAsUserNameLink).toHaveText(` Logged in as ${userName} `);
+    }
 
 }
