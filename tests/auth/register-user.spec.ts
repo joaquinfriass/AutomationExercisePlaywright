@@ -56,12 +56,6 @@ test.describe('Test Case 1: Register User', () => {
   });
 });
 
-// test.describe('Test Case 2: Register User with existing email', () => {
-
-//   test('Flujo registro de usuario con email existente', async ({ homePage, loginPage, registerPage }) => {
-//     // Instanciamos las páginas necesarias para el flujo de registro
-// });
-
-
+// test.describe('Test Case 2: Register User with existing email'
 //test.describe('Test Case 3: Login User with incorrect email and password'
 //test.describe('Test Case 4: Login User with correct email and password'
