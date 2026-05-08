@@ -73,28 +73,12 @@ export class RegisterPage {
         await this.mobileNumberInput.fill(user.phone);
     }
 
-    async verifyNewUserSignupVisible() {
-        await expect(this.newUserSignupTitle).toBeVisible();
-    }
-
-    async verifyEnterAccountInformationVisible() {
-        await expect(this.enterAccountInformationTitle).toBeVisible();
-    }
-
     async clickCreateAccountButton() {
         await this.createAccountButton.click();
     }
 
-    async verifyCreateAccountSuccess() {
-        await expect(this.createAccountSuccessMessage).toBeVisible();
-    }
-
     async clickContinueButton() {
         await this.continueButton.click();
-    }
-
-    async verifyLoggedInAsUserName(userName: string) {
-        await expect(this.loggedInAsUserNameLink).toHaveText(` Logged in as ${userName} `);
     }
 
 }
