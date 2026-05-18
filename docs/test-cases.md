@@ -46,15 +46,14 @@
  - 1. Navigate to Products page
  - 2. Verify ALL PRODUCTS is visible
  - 3. Click on VIEW PRODUCT of first product
- - 4. User is landed to product detail page
- - 5. Verify that detail is visible: product name, category, price, availability, condition, brand.
+ - 4. Verify that detail is visible: product name, category, price, availability, condition, brand.
 
  **Test Case 6: Search Product**
 
  - 1. Navigate to Products page
- - 2. Enter product name in search input and click search button.
- - 3. Verify SEARCHED PRODUCTS is visible.
- - 4. Verify all the products related to search are visible
+ - 2. Enter product name in search input and click search button
+ - 3. Verify SEARCHED PRODUCTS is visible
+ - 4. Verify that the search yields consistent results
 
  **Test Case 7: Add products in Cart and Verify quantity in Cart**
 
@@ -65,7 +64,6 @@
  - 5. Click 'View Cart' button
  - 6. Verify both products are added to Cart
  - 7. Verify their prices, quantity and total price
-
 
  **Test Case 8: Remove products in Cart**
 
