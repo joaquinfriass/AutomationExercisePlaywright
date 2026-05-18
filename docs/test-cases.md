@@ -41,6 +41,46 @@
 - 4. Click 'login' button
 - 5. Verify that 'Logged in as username' is visible
 
+**Test Case 5: Verify All Products and product detail page**
+
+ - 1. Navigate to Products page
+ - 2. Verify ALL PRODUCTS is visible
+ - 3. Click on VIEW PRODUCT of first product
+ - 4. User is landed to product detail page
+ - 5. Verify that detail is visible: product name, category, price, availability, condition, brand.
+
+ **Test Case 6: Search Product**
+
+ - 1. Navigate to Products page
+ - 2. Enter product name in search input and click search button.
+ - 3. Verify SEARCHED PRODUCTS is visible.
+ - 4. Verify all the products related to search are visible
+
+ **Test Case 7: Add products in Cart and Verify quantity in Cart**
+
+ - 1. Navigate to Products page
+ - 2. Hover over first product and click 'Add to cart'
+ - 3. Click 'Continue Shopping' button
+ - 4. Hover over second product and click 'Add to cart'
+ - 5. Click 'View Cart' button
+ - 6. Verify both products are added to Cart
+ - 7. Verify their prices, quantity and total price
+
+
+ **Test Case 8: Remove products in Cart**
+
+ - 1. Navigate to Products page
+ - 2. Add products to cart
+ - 3. Click Cart Button
+ - 4. Verify that cart page is displayed
+ - 5. Click X button correspondint to partiular product
+ - 6. Verify thar product is removed from the cart
+
+ **Test Case 9: Register API user, validate login and personal information**
+ **Test Case 10: Register UI user, validate API**
+ **Test Case 11: Edit Password with API, Validate Information and Log In**
+ **Test Case 12: Create and delete users using API, log in with deleted user**
+ 
 Casos de prueba Tienda y Carrito:
 Caso de prueba 5: Verificar todos los productos y la página de detalles del producto.
 Caso de prueba 6: Búsqueda de productos
@@ -51,4 +91,6 @@ Casos de prueba API + UI
 Test Case 9: Register User con API, Validar Información en UI.
 Test Case 10: Registrar Usuario con la UI, y validar información del Usuario con JSON.
 Test Case 11: Editar Password con API, Validar información e iniciar Sesión.
-Test Case 12: Eliminar Usuario con API, intentar iniciar sesión con credenciales inválidas y luego ingresar correctamente.
+Test Case 12: Crear y Eliminar Usuario con API, iniciar sesión con usuario eliminado.
+
+
