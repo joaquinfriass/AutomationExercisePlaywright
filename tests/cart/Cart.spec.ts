@@ -97,4 +97,39 @@ test.describe('Test Case 7: Verify Cart After Adding Product', () => {
     });
 });
 
-// test.describe('Test Case 8: Remove products in Cart', () => {
+test.describe('Test Case 8: Remove products in Cart', () => {
+        test('Should remove products in cart and verify', async ({ homePage, productsPage, cartPage }) => {
+            
+            await test.step('Navigate to products page', async () => {
+                await productsPage.navigateToProductsPage();
+            });
+
+            await test.step('Add products to cart', async () => {
+                await productsPage.addFirstProductToCart();
+                await productsPage.continueShoppingButton.click(); 
+                await productsPage.addSecondProductToCart();
+                await productsPage.addSecondProductToCart();
+                await productsPage.addSecondProductToCart();  
+            });
+
+            await test.step('Click View Cart button', async () => {
+                await productsPage.viewCartButton.click();
+            });
+
+            await test.step('Verify that cart page is displayed', async () => {
+                await expect(cartPage.cartPageTitle).toBeVisible();
+            });
+
+            await test.step('Click X button correspondint to partiular product', async () => {
+                await expect(cartPage.firstProductInCart).toBeVisible();
+                const firstProductName = await cartPage.firstProductNameInCart.innerText();
+                await cartPage.removeFirstProductButton.click();
+                await expect(cartPage.firstProductInCart).not.toHaveText(firstProductName);
+            });
+            
+            await test.step('Verify that product is removed from the cart', async () => {
+                await expect(cartPage.firstProductInCart).not.toBeVisible();
+            });
+            
+        });
+});

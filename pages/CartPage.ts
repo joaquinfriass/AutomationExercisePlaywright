@@ -11,6 +11,11 @@ export class CartPage {
     readonly quantityInputSecondProduct: Locator
     readonly totalPriceFirstProduct: Locator;
     readonly totalPriceSecondProduct: Locator;
+    readonly cartPageTitle: Locator;
+    readonly removeFirstProductButton: Locator;
+    readonly removeSecondProductButton: Locator;
+    readonly firstProductNameInCart: Locator;
+    readonly secondProductNameInCart: Locator;
 
     constructor(private page: Page) {
         this.firstProductInCart = page.locator('.cart_info .cart_product').nth(0);
@@ -21,7 +26,12 @@ export class CartPage {
         this.quantityInputSecondProduct = page.locator('.cart_info .cart_quantity').nth(1).locator('button');
         this.totalPriceFirstProduct = page.locator('.cart_info .cart_total').nth(0);
         this.totalPriceSecondProduct = page.locator('.cart_info .cart_total').nth(1);
+        this.cartPageTitle = page.locator('li', { hasText: 'Shopping Cart' });
+        this.removeFirstProductButton = page.locator('.cart_info .cart_delete').nth(0).locator('a');
+        this.removeSecondProductButton = page.locator('.cart_info .cart_delete').nth(1).locator('a');
+        this.firstProductNameInCart = page.locator('.cart_info .cart_description').nth(0).locator('h4 a');
+        this.secondProductNameInCart = page.locator('.cart_info .cart_description').nth(1).locator('h4 a');
     }
 
-
+    
 }

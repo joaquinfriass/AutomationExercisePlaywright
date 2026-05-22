@@ -14,7 +14,7 @@ test.describe('Test Case 1: Register User', () => {
     // Generamos un usuario único para cada prueba
     const user = generateUser();
 
-  await test.step('Navigate login page', async () => {
+  await test.step('Navigate to login page', async () => {
     await homePage.navigate();
     await homePage.verifyHomePage();
     await homePage.clickLoginLink();
@@ -62,7 +62,7 @@ test.describe('Test Case 2: Register User with existing email', () => {
     // Implementation for this test case
     const existingUser = generateExistingUser();
 
-    await test.step('Navigate login page', async () => {
+    await test.step('Navigate to login page', async () => {
       await loginPage.navigate();
     });
 
@@ -83,7 +83,7 @@ test.describe('Test Case 2: Register User with existing email', () => {
 test.describe('Test Case 3: Login User with incorrect email and password', () => {
   test('Should display error message when trying to login with incorrect email and password', async ({ homePage, loginPage }) => {
 
-    await test.step('Navigate login page', async () => {
+    await test.step('Navigate to login page', async () => {
       await loginPage.navigate();
     });
 
@@ -106,7 +106,7 @@ test.describe('Test Case 4: Login User with correct email and password', () => {
     // Implementation for this test case
     const existingUser = generateExistingUser();
 
-    await test.step('Navigate login page', async () => {
+    await test.step('Navigate to login page', async () => {
       await loginPage.navigate();
     });
 

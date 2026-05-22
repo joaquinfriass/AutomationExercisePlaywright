@@ -1,9 +1,11 @@
 
 # Test Cases - Automation Exercise
 
+# Auth test
+
   **Test Case 1: Register User**
 
-- 1. Navigate to url ”https://automationexercise.com/login”
+- 1. Navigate to login page
 - 2. Verify 'New User Signup!' is visible
 - 3. Enter name and email address
 - 4. Click 'Signup' button
@@ -41,6 +43,8 @@
 - 4. Click 'login' button
 - 5. Verify that 'Logged in as username' is visible
 
+# Cart test
+
 **Test Case 5: Verify All Products and product detail page**
 
  - 1. Navigate to Products page
@@ -69,10 +73,12 @@
 
  - 1. Navigate to Products page
  - 2. Add products to cart
- - 3. Click Cart Button
+ - 3. Click View Cart Button
  - 4. Verify that cart page is displayed
  - 5. Click X button correspondint to partiular product
  - 6. Verify thar product is removed from the cart
+
+ # API + UI test
 
  **Test Case 9: Register API user, validate login and personal information**
 Test Case 9: Register User con API, Validar Información en UI.
