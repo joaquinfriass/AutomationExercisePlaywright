@@ -2,6 +2,7 @@ import { expect, test } from '../../fixtures';
 import { generateUser } from '../../data/userFactory';
 import { generateExistingUser } from '../../data/existingUserFactory';
 
+
 test.afterEach(async ({ page }) => {
     await page.close();
 });
@@ -48,13 +49,36 @@ test.describe('Test Case 6: Search Product', () => {
             await expect(productsPage.searchedProductsTitle).toBeVisible();
         });
 
-        await test.step('Verify that the first result contains the searched word', async () => { 
-            const productsCount = await productsPage.getSearchedProductsCount();
-            const productNames = await productsPage.getSearchedProductNames('Jeans');
-
-            await expect(productsCount).toBeGreaterThan(0);
-            await expect(productNames[0]).toContain('Jeans');
+        await test.step('Verify that the results contains the searched word', async () => { 
+            
+            const productsName = await productsPage.getAllProductNames();
+            await expect(productsName.length).toBeGreaterThan(0); // Verificamos que se hayan encontrado productos
+            
+            for (const name of productsName) {
+                await expect(name).toContain('Jeans'); // Verificamos que cada nombre de producto contenga la palabra 'Jeans'
+            }
         });
+
+
+    });
+});
+
+test.describe('Test Case 6.1: Search Product with empty result', () => {
+    test('Should display no results message when searching for non-existent product', async ({ homePage, productsPage }) => {
+
+        await test.step('Navigate to products page', async () => {
+            await productsPage.navigateToProductsPage();
+        });
+
+        await test.step('Enter non-existent product name in search input and click search button', async () => {
+            await productsPage.searchProduct('NonExistentProduct');
+        });
+
+        await test.step('Verify that the search returns no results', async () => {
+            const productsCount = await productsPage.getSearchedProductsCount();
+            await expect(productsCount).toBe(0); // Verificamos que no se hayan encontrado productos
+        });
+
     });
 });
 

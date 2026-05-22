@@ -60,6 +60,11 @@
  - 3. Verify searched products is visible
  - 4. Verify that the first result contains the searched word
 
+**Test Case 6.1: Search Product with empty result**
+ - 1. Navigate to Products page
+ - 2. Enter non-existent product name in search input and click search button
+ - 3. Verify that the search returns no results
+
  **Test Case 7: Add products in Cart and Verify quantity in Cart**
 
  - 1. Navigate to Products page
