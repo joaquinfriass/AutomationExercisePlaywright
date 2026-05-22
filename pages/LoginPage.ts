@@ -38,7 +38,7 @@ export class LoginPage {
         await this.page.goto('https://automationexercise.com/login');
     }
 
-    async FillLoginForm(email: string, password: string) {
+    async fillLoginForm(email: string, password: string) {
         await this.loginEmailInput.fill(email);
         await this.loginPasswordInput.fill(password);
         await this.loginButtonLoginForm.click();

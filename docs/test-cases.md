@@ -18,6 +18,7 @@
 - 11. Verify that 'ACCOUNT CREATED!' is visible
 - 12. Click 'Continue' button
 - 13. Verify that 'Logged in as username' is visible
+- 14. Delete account and verify deletion
 
 **Test Case 2: Register User with existing email**
 
@@ -48,15 +49,15 @@
 **Test Case 5: Verify All Products and product detail page**
 
  - 1. Navigate to Products page
- - 2. Verify ALL PRODUCTS is visible
- - 3. Click on VIEW PRODUCT of first product
+ - 2. Verify all products title is visible
+ - 3. Click on view product of first product
  - 4. Verify that detail is visible: product name, category, price, availability, condition, brand.
 
  **Test Case 6: Search Product**
 
  - 1. Navigate to Products page
  - 2. Enter product name in search input and click search button
- - 3. Verify SEARCHED PRODUCTS is visible
+ - 3. Verify searched products is visible
  - 4. Verify that the first result contains the searched word
 
  **Test Case 7: Add products in Cart and Verify quantity in Cart**

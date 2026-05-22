@@ -24,6 +24,8 @@ export class RegisterPage {
     readonly createAccountSuccessMessage: Locator;
     readonly continueButton: Locator;
     readonly loggedInAsUserNameLink: Locator;
+    readonly deleteAccountButton: Locator;
+    readonly accountDeletedMessage: Locator;
 
     constructor(private page: Page) {
 
@@ -51,6 +53,8 @@ export class RegisterPage {
         this.createAccountSuccessMessage = page.getByRole('heading', { name: 'Account Created!' });
         this.continueButton = page.getByTestId('continue-button');
         this.loggedInAsUserNameLink = page.locator('li', { hasText: ' Logged in as' });
+        this.deleteAccountButton = page.getByRole('link', { name: 'Delete Account' });
+        this.accountDeletedMessage = page.getByRole('heading', { name: 'Account Deleted!' });
     }
 
     async fillRegistrationForm(user: UserData) {
@@ -81,4 +85,7 @@ export class RegisterPage {
         await this.continueButton.click();
     }
 
+    async deleteAccount() {
+        await this.deleteAccountButton.click();
+    }
 }

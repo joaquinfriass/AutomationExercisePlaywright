@@ -2,12 +2,11 @@ import { expect, test } from '../../fixtures';
 import { generateUser } from '../../data/userFactory';
 import { generateExistingUser } from '../../data/existingUserFactory';
 
-test.describe('Test Case 1: Register User', () => {
+test.afterEach(async ({ page }) => {
+  await page.close();
+});
 
-  // // Se cierra la página después de cada prueba para asegurar un entorno limpio para la siguiente prueba
-  // test.afterEach(async ({ page }) => {
-  //   await page.close();
-  // });
+test.describe('Test Case 1: Register User', () => {
 
   test('Should register a new user successfully', async ({ homePage, loginPage, registerPage }) => {
 
@@ -53,6 +52,10 @@ test.describe('Test Case 1: Register User', () => {
       await expect(registerPage.loggedInAsUserNameLink).toHaveText(` Logged in as ${user.name} `);
     });
 
+        await test.step('Delete account and verify deletion', async () => {
+      await registerPage.deleteAccount();
+      await expect(registerPage.accountDeletedMessage).toBeVisible();
+    });
 
   });
 });
@@ -77,6 +80,7 @@ test.describe('Test Case 2: Register User with existing email', () => {
     await test.step('Verify that error message "Email Address already exist!" is visible', async () => {
       await expect(loginPage.emailAlreadyExistErrorMessage).toBeVisible();
     });
+
   });
 });
 
@@ -92,7 +96,7 @@ test.describe('Test Case 3: Login User with incorrect email and password', () =>
     });
 
     await test.step('Fill login form with incorrect email and password', async () => {
-      await loginPage.FillLoginForm("incorrect@example.com", "wrongpassword");
+      await loginPage.fillLoginForm("incorrect@example.com", "wrongpassword");
     });
 
     await test.step('Verify that error message "Your email or password is incorrect!" is visible', async () => {
@@ -115,7 +119,7 @@ test.describe('Test Case 4: Login User with correct email and password', () => {
     });
 
     await test.step('Fill login form with correct email and password', async () => {
-      await loginPage.FillLoginForm(existingUser.email, existingUser.password);
+      await loginPage.fillLoginForm(existingUser.email, existingUser.password);
     });
 
     await test.step('Verify that "Logged in as username" is visible', async () => {
