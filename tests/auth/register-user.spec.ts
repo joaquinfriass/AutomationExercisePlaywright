@@ -7,7 +7,6 @@ test.afterEach(async ({ page }) => {
 });
 
 test.describe('Test Case 1: Register User', () => {
-
   test('Should register a new user successfully', async ({ homePage, loginPage, registerPage }) => {
 
     // Generamos un usuario único para cada prueba

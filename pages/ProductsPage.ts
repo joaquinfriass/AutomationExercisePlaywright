@@ -74,4 +74,18 @@ export class ProductsPage {
         return this.searchedProductNames.allTextContents();
     }
 
+    async addProductToCartByName(productName: string) {
+        const product = this.searchedProducts.filter({ has: this.page.getByText(productName) }).first();
+        await product.hover();
+        await product.locator('a').filter({ hasText: 'Add to cart' }).last().click();
+    }
+
+    async continueShoppingButtonClick() {
+        await this.continueShoppingButton.click();
+    }   
+
+    async viewCartButtonClick() {
+        await this.viewCartButton.click(); 
+    }
+
 }

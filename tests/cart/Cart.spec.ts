@@ -90,22 +90,22 @@ test.describe('Test Case 7: Verify Cart After Adding Product', () => {
         });
 
         await test.step('Hover over first product and click Add to cart', async () => {
-            await productsPage.addFirstProductToCart();
+            await productsPage.addProductToCartByName('Blue Top');
         });
-
         
         await test.step('Click Continue Shopping button', async () => {
-            await productsPage.continueShoppingButton.click(); 
+            await productsPage.continueShoppingButtonClick(); 
         });
 
         
         await test.step('Hover over second product and click Add to cart', async () => {
-            await productsPage.addSecondProductToCart(); 
+            await productsPage.addProductToCartByName('Men Tshirt'); 
+            await productsPage.addProductToCartByName('Men Tshirt');
         });
 
         
         await test.step('Click View Cart button', async () => {
-            await productsPage.viewCartButton.click();
+            await productsPage.viewCartButtonClick();
         });
 
         await test.step('Verify both products are added to Cart', async () => {
@@ -118,8 +118,9 @@ test.describe('Test Case 7: Verify Cart After Adding Product', () => {
             await expect(cartPage.secondProductPriceInCart).toBeVisible();
             await expect(cartPage.quantityInputFirstProduct).toBeVisible();
             await expect(cartPage.quantityInputSecondProduct).toBeVisible();
-            await expect(cartPage.totalPriceFirstProduct).toBeVisible();
-            await expect(cartPage.totalPriceSecondProduct).toBeVisible();
+
+            await cartPage.totalPriceVerification(cartPage.firstproductPriceInCart, cartPage.totalPriceFirstProduct);
+            await cartPage.totalPriceVerification(cartPage.secondProductPriceInCart, cartPage.totalPriceSecondProduct);
         });
         
     });
@@ -133,15 +134,15 @@ test.describe('Test Case 8: Remove products in Cart', () => {
             });
 
             await test.step('Add products to cart', async () => {
-                await productsPage.addFirstProductToCart();
+                await productsPage.addProductToCartByName('Blue Top');
                 await productsPage.continueShoppingButton.click(); 
-                await productsPage.addSecondProductToCart();
-                await productsPage.addSecondProductToCart();
-                await productsPage.addSecondProductToCart();  
+                await productsPage.addProductToCartByName('Men Tshirt');
+                await productsPage.addProductToCartByName('Men Tshirt');
+                await productsPage.addProductToCartByName('Men Tshirt');  
             });
 
             await test.step('Click View Cart button', async () => {
-                await productsPage.viewCartButton.click();
+                await productsPage.viewCartButtonClick();
             });
 
             await test.step('Verify that cart page is displayed', async () => {

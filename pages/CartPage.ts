@@ -33,5 +33,15 @@ export class CartPage {
         this.secondProductNameInCart = page.locator('.cart_info .cart_description').nth(1).locator('h4 a');
     }
 
-    
+    async totalPriceVerification(productPriceLocator: Locator, totalPriceLocator: Locator) {
+        const productPriceText = await productPriceLocator.innerText();
+        const productPrice = parseFloat(productPriceText.replace('Rs. ', ''));
+        const quantityInputValue = await productPriceLocator.locator('..').locator('.cart_quantity').locator('button').innerText();
+        const quantity = parseInt(quantityInputValue);
+        const expectedTotalPrice = productPrice * quantity;
+        const totalPriceText = await totalPriceLocator.innerText();
+        const totalPrice = parseFloat(totalPriceText.replace('Rs. ', ''));
+        expect(totalPrice).toBeCloseTo(expectedTotalPrice, 2);
+    }
+
 }
