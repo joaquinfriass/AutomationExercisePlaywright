@@ -2,6 +2,10 @@ import { expect, test } from '../../fixtures';
 import { generateUser } from '../../data/userFactory';
 import { generateExistingUser } from '../../data/existingUserFactory';
 
+test.afterEach(async ({ page }) => {
+    await page.close();
+});
+
 test.describe('Test Case 5: Verify All Products and product detail page', () => {
     test('Should verify all products and product detail page', async ({ homePage, productsPage }) => {
 
@@ -18,12 +22,12 @@ test.describe('Test Case 5: Verify All Products and product detail page', () => 
         });
 
         await test.step('Verify that detail is visible: product name, category, price, availability, condition, brand', async () => {
-                await expect(productsPage.productName).toBeVisible();
-                await expect(productsPage.productCategory).toBeVisible();
-                await expect(productsPage.productPrice).toBeVisible();
-                await expect(productsPage.productAvailability).toBeVisible();
-                await expect(productsPage.productCondition).toBeVisible();
-                await expect(productsPage.productBrand).toBeVisible();
+                await expect(productsPage.productName).not.toBeEmpty();// Verificamos que el nombre del producto no esté vacío
+                await expect(productsPage.productCategory).toContainText('Category: '); // Verificamos que la categoría contenga el texto 'Category: '
+                await expect(productsPage.productPrice).toHaveText(/Rs\. \d+/); // Verificamos que el precio tenga el formato 'Rs. ' seguido de un número
+                await expect(productsPage.productAvailability).toContainText('Availability:'); // Verificamos que la disponibilidad contenga el texto 'Availability:'
+                await expect(productsPage.productCondition).toContainText('Condition:')
+                await expect(productsPage.productBrand).toContainText('Brand:');
         });
 
     });

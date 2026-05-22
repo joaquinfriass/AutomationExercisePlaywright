@@ -69,5 +69,5 @@ export class ProductsPage {
         await secondProduct.hover();
         await secondProduct.locator('a').filter({ hasText: 'Add to cart' }).last().click();
     }
-
+    
 }
