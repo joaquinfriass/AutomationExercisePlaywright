@@ -135,7 +135,7 @@ test.describe('Test Case 8: Remove products in Cart', () => {
 
             await test.step('Add products to cart', async () => {
                 await productsPage.addProductToCartByName('Blue Top');
-                await productsPage.continueShoppingButton.click(); 
+                await productsPage.continueShoppingButtonClick(); 
                 await productsPage.addProductToCartByName('Men Tshirt');
                 await productsPage.addProductToCartByName('Men Tshirt');
                 await productsPage.addProductToCartByName('Men Tshirt');  
@@ -149,16 +149,14 @@ test.describe('Test Case 8: Remove products in Cart', () => {
                 await expect(cartPage.cartPageTitle).toBeVisible();
             });
 
-            await test.step('Click X button correspondint to partiular product', async () => {
-                await expect(cartPage.firstProductInCart).toBeVisible();
-                const firstProductName = await cartPage.firstProductNameInCart.innerText();
-                await cartPage.removeFirstProductButton.click();
-                await expect(cartPage.firstProductInCart).not.toHaveText(firstProductName);
+            await test.step('Click X button correspondint to Blue Top product', async () => {
+                await cartPage.removeProductButton("Blue Top");
             });
             
             await test.step('Verify that product is removed from the cart', async () => {
-                await expect(cartPage.firstProductInCart).not.toBeVisible();
+                await expect(cartPage.firstProductNameInCart).not.toHaveText('Blue Top');
             });
             
         });
+
 });

@@ -16,6 +16,7 @@ export class CartPage {
     readonly removeSecondProductButton: Locator;
     readonly firstProductNameInCart: Locator;
     readonly secondProductNameInCart: Locator;
+    readonly productNamesInCart: Locator;
 
     constructor(private page: Page) {
         this.firstProductInCart = page.locator('.cart_info .cart_product').nth(0);
@@ -31,6 +32,8 @@ export class CartPage {
         this.removeSecondProductButton = page.locator('.cart_info .cart_delete').nth(1).locator('a');
         this.firstProductNameInCart = page.locator('.cart_info .cart_description').nth(0).locator('h4 a');
         this.secondProductNameInCart = page.locator('.cart_info .cart_description').nth(1).locator('h4 a');
+        this.productNamesInCart = page.locator('.cart_info .cart_description h4 a');
+
     }
 
     async totalPriceVerification(productPriceLocator: Locator, totalPriceLocator: Locator) {
@@ -42,6 +45,17 @@ export class CartPage {
         const totalPriceText = await totalPriceLocator.innerText();
         const totalPrice = parseFloat(totalPriceText.replace('Rs. ', ''));
         expect(totalPrice).toBeCloseTo(expectedTotalPrice, 2);
+    }
+
+    async removeProductButton(productName: string) {
+        //obtener todos los nombres de los productos en el carrito
+        const productNames = await this.productNamesInCart.allTextContents();
+        for (let i = 0; i < productNames.length; i++) {
+            if (productNames[i] === productName) {
+                await this.removeFirstProductButton.click();
+                break;
+            }
+        }
     }
 
 }

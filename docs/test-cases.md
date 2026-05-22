@@ -81,7 +81,7 @@
  - 2. Add products to cart
  - 3. Click View Cart Button
  - 4. Verify that cart page is displayed
- - 5. Click X button correspondint to partiular product
+ - 5. Click X button correspondint to particular product
  - 6. Verify thar product is removed from the cart
 
  # API + UI test
