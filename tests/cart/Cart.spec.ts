@@ -53,3 +53,48 @@ test.describe('Test Case 6: Add to cart', () => {
         });
     });
 });
+
+test.describe('Test Case 7: Verify Cart After Adding Product', () => {
+    test('Should verify cart after adding product', async ({ homePage, productsPage, cartPage }) => {
+        
+        await test.step('Navigate to products page', async () => {
+            await productsPage.navigateToProductsPage();
+        });
+
+        await test.step('Hover over first product and click Add to cart', async () => {
+            await productsPage.addFirstProductToCart();
+        });
+
+        
+        await test.step('Click Continue Shopping button', async () => {
+            await productsPage.continueShoppingButton.click(); 
+        });
+
+        
+        await test.step('Hover over second product and click Add to cart', async () => {
+            await productsPage.addSecondProductToCart(); 
+        });
+
+        
+        await test.step('Click View Cart button', async () => {
+            await productsPage.viewCartButton.click();
+        });
+
+        await test.step('Verify both products are added to Cart', async () => {
+            await expect(cartPage.firstProductInCart).toBeVisible();
+            await expect(cartPage.secondProductInCart).toBeVisible();          
+        });
+
+        await test.step('Verify their prices, quantity and total price', async () => {
+            await expect(cartPage.firstproductPriceInCart).toBeVisible();
+            await expect(cartPage.secondProductPriceInCart).toBeVisible();
+            await expect(cartPage.quantityInputFirstProduct).toBeVisible();
+            await expect(cartPage.quantityInputSecondProduct).toBeVisible();
+            await expect(cartPage.totalPriceFirstProduct).toBeVisible();
+            await expect(cartPage.totalPriceSecondProduct).toBeVisible();
+        });
+        
+    });
+});
+
+// test.describe('Test Case 8: Remove products in Cart', () => {

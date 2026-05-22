@@ -16,6 +16,8 @@ export class ProductsPage {
     readonly searchedProductsTitle: Locator;
     readonly searchedProducts: Locator;
     readonly searchedProductNames: Locator;
+    readonly continueShoppingButton: Locator;
+    readonly viewCartButton: Locator;
 
     constructor(private page: Page) {
         this.allProductsTitle = page.getByRole('heading', { name: 'All Products' });
@@ -31,6 +33,8 @@ export class ProductsPage {
         this.searchedProductsTitle = page.getByRole('heading', { name: 'Searched Products' });
         this.searchedProducts = page.locator('.single-products');
         this.searchedProductNames = this.searchedProducts.locator('.productinfo p');
+        this.continueShoppingButton = page.getByRole('button', { name: 'Continue Shopping' });
+        this.viewCartButton = page.getByRole('link', { name: 'View Cart' });
     }
 
     async navigateToProductsPage() {
@@ -53,4 +57,17 @@ export class ProductsPage {
     async getSearchedProductNames(name: string) {
         return await this.searchedProductNames.allTextContents();
     }
+
+    async addFirstProductToCart() {
+        const firstProduct = this.searchedProducts.first();
+        await firstProduct.hover();
+        await firstProduct.locator('a').filter({ hasText: 'Add to cart' }).last().click();
+    }
+
+    async addSecondProductToCart() {
+        const secondProduct = this.searchedProducts.nth(1);
+        await secondProduct.hover();
+        await secondProduct.locator('a').filter({ hasText: 'Add to cart' }).last().click();
+    }
+
 }

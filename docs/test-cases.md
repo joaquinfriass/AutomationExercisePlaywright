@@ -53,7 +53,7 @@
  - 1. Navigate to Products page
  - 2. Enter product name in search input and click search button
  - 3. Verify SEARCHED PRODUCTS is visible
- - 4. Verify that the search yields consistent results
+ - 4. Verify that the first result contains the searched word
 
  **Test Case 7: Add products in Cart and Verify quantity in Cart**
 
@@ -75,20 +75,21 @@
  - 6. Verify thar product is removed from the cart
 
  **Test Case 9: Register API user, validate login and personal information**
- **Test Case 10: Register UI user, validate API**
- **Test Case 11: Edit Password with API, Validate Information and Log In**
- **Test Case 12: Create and delete users using API, log in with deleted user**
- 
-Casos de prueba Tienda y Carrito:
-Caso de prueba 5: Verificar todos los productos y la página de detalles del producto.
-Caso de prueba 6: Búsqueda de productos
-Caso de prueba 7: Agregar productos al carrito Y Verificar la cantidad de productos en el carrito
-Caso de prueba 8: Eliminar productos del carrito
-
-Casos de prueba API + UI
 Test Case 9: Register User con API, Validar Información en UI.
+
+ **Test Case 10: Register UI user, validate API**
 Test Case 10: Registrar Usuario con la UI, y validar información del Usuario con JSON.
+
+ **Test Case 11: Edit Password with API, Validate Information and Log In**
 Test Case 11: Editar Password con API, Validar información e iniciar Sesión.
+
+ **Test Case 12: Create and delete users using API, log in with deleted user**
 Test Case 12: Crear y Eliminar Usuario con API, iniciar sesión con usuario eliminado.
+
+
+
+
+
+
 
 
